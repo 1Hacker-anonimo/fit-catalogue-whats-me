@@ -67,7 +67,7 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
               <img 
                 src={product.images[currentImageIndex]} 
                 alt={product.name}
-                className="w-full h-96 object-cover rounded-lg shadow-medium"
+                className="w-full  object-contain rounded-lg shadow-medium"
               />
               <Button 
                 variant="ghost" 
