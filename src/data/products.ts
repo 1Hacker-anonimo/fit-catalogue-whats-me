@@ -15,7 +15,7 @@ export const products: Product[] = [
     images: [product1, product1, product1],
     colors: [
       { name: "Rosa Vibrante", value: "#E91E63" },
-      { name: "Roxo", value: "#9C27B0"},
+      { name: "Ropxo", value: "#9C27B0"},
       { name: "Coral", value: "#FF7043" }
     ],
     sizes: [
