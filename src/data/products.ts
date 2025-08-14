@@ -6,6 +6,7 @@ import product4 from "@/assets/product-4.jpg";
 import product5 from "@/assets/product-5.jpg";
 import product6 from "@/assets/product-6.jpg";
 import product7 from "@/assets/vanda.jpg";
+import product8 from "@/assets/vanda2.jpg";
 
 export const products: Product[] = [
   {
@@ -13,7 +14,7 @@ export const products: Product[] = [
     name: "Top Esportivo Rosa",
     description: "Top esportivo de alta performance com tecido respirável e suporte médio. Ideal para treinos intensos e atividades de baixo impacto.",
     price: 89.90,
-    images: [ product7, product7, product7],
+    images: [ product8, product7 ],
     colors: [
       { name: "Rosa Vibrante", value: "#E91E63" },
       { name: "Roxo", value: "#9C27B0"},
