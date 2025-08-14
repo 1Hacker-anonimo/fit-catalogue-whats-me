@@ -5,8 +5,7 @@ import product3 from "@/assets/product-3.jpg";
 import product4 from "@/assets/product-4.jpg";
 import product5 from "@/assets/product-5.jpg";
 import product6 from "@/assets/product-6.jpg";
-import product7 from "@/assets/Macaquinho-Fitness-sem-bolso.jpg";
-import product8 from "@/assets/Macaquinho-Fitness-sem-bolso2.jpg";
+import product7 from "@/assets/vanda.jpg";
 
 export const products: Product[] = [
   {
