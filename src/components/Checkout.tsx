@@ -88,7 +88,7 @@ Obrigada pelo seu pedido! 💕`;
     }
 
     const message = formatWhatsAppMessage();
-    const whatsappNumber = "5511999999999"; // Substitua pelo seu número
+    const whatsappNumber = "558598284434"; // Substitua pelo seu número
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
