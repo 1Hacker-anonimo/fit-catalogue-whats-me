@@ -115,13 +115,13 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
                 <span className="text-sm text-muted-foreground">(127 avaliações)</span>
               </div>
               
+              <div className="text-white font-bold text-base mb-4">
+                R$ {product.price.toFixed(2)}
+              </div>
+              
               <p className="text-muted-foreground mb-4">
                 {product.description}
               </p>
-              
-              <div className="text-3xl font-bold gradient-primary bg-clip-text text-transparent">
-                R$ {product.price.toFixed(2)}
-              </div>
             </div>
 
             {/* Cores */}

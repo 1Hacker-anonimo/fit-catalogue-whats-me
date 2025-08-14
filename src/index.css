@@ -8,66 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 5%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 5%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 5%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 5%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 5%;
+    --border: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 100%;
 
     /* Black and white theme colors */
-    --fitness-primary: 0 0% 5%;
-    --fitness-secondary: 0 0% 15%;
-    --fitness-accent: 0 0% 25%;
+    --fitness-primary: 0 0% 0%;
+    --fitness-secondary: 0 0% 10%;
+    --fitness-accent: 0 0% 100%;
     
-    /* Gradients - black to grey */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 15%));
-    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 15%), hsl(0 0% 25%));
-    --gradient-accent: linear-gradient(45deg, hsl(0 0% 5%), hsl(0 0% 20%));
+    /* Gradients - pure black */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 5%));
+    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 10%));
+    --gradient-accent: linear-gradient(45deg, hsl(0 0% 0%), hsl(0 0% 5%));
     
     /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(0 0% 5% / 0.15);
-    --shadow-medium: 0 8px 30px hsl(0 0% 5% / 0.2);
-    --shadow-strong: 0 12px 40px hsl(0 0% 5% / 0.3);
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.5);
+    --shadow-medium: 0 8px 30px hsl(0 0% 0% / 0.6);
+    --shadow-strong: 0 12px 40px hsl(0 0% 0% / 0.8);
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 0 0% 5%;
-
-    --sidebar-primary: 0 0% 5%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 0 0% 95%;
-
-    --sidebar-accent-foreground: 0 0% 5%;
-
-    --sidebar-border: 0 0% 90%;
-
-    --sidebar-ring: 0 0% 5%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 0% 100%;
   }
 
   .dark {

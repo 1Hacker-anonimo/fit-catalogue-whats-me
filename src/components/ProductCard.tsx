@@ -42,14 +42,19 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
           {product.description}
         </p>
         
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
+        <div className="mb-3">
+          <span className="text-white font-bold text-base">
             R$ {product.price.toFixed(2)}
           </span>
-          
-          <Button size="sm" className="gradient-primary text-white shadow-soft hover:shadow-medium transition-all">
+        </div>
+        
+        <div className="flex gap-2">
+          <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
             <ShoppingBag className="h-4 w-4 mr-2" />
-            Comprar
+            Adicionar ao Carrinho
+          </Button>
+          <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
+            Comprar Agora
           </Button>
         </div>
         
