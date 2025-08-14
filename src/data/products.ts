@@ -16,7 +16,7 @@ export const products: Product[] = [
     colors: [
       { name: "Rosa Vibrante", value: "#E91E63" },
       { name: "Roxo", value: "#9C27B0"},
-      {name: "Preto", value: "#FFFFFF"}
+      {name: "Preto", value: "#000000"}
       { name: "Coral", value: "#FF7043" }
     ],
     sizes: [
