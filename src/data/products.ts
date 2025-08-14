@@ -12,7 +12,7 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Macaquinho Fitness Feminino Poliamida sem Bolsos – Alta Compressão",
-    description: 'MACACÃO \n CONJUNTO DE SHORT'
+    description: 'MACACÃO \n CONJUNTO DE SHORT',
     price: 89.90,
     images: [ product8, product7 ],
     colors: [
