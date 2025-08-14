@@ -100,7 +100,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onChecko
                         </Button>
                       </div>
                       
-                      <div className="text-sm font-semibold gradient-primary bg-clip-text text-transparent">
+                      <div className="text-sm font-semibold text-white">
                         R$ {(item.product.price * item.quantity).toFixed(2)}
                       </div>
                     </div>
@@ -124,7 +124,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onChecko
                   <Separator />
                   <div className="flex justify-between font-semibold text-lg">
                     <span>Total:</span>
-                    <span className="gradient-primary bg-clip-text text-transparent">
+                    <span className="text-white">
                       R$ {(total + (total >= 150 ? 0 : 15)).toFixed(2)}
                     </span>
                   </div>

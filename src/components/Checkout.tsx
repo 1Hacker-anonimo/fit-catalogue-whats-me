@@ -257,7 +257,7 @@ Obrigada pelo seu pedido! 💕`;
                         <p className="text-xs text-muted-foreground">
                           {item.selectedColor.name} • {item.selectedSize.name} • Qtd: {item.quantity}
                         </p>
-                        <p className="text-sm font-semibold">
+                        <p className="text-sm font-semibold text-white">
                           R$ {(item.product.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -270,7 +270,7 @@ Obrigada pelo seu pedido! 💕`;
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
-                    <span>R$ {total.toFixed(2)}</span>
+                    <span className="text-white">R$ {total.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Frete:</span>
@@ -281,7 +281,7 @@ Obrigada pelo seu pedido! 💕`;
                   <Separator />
                   <div className="flex justify-between font-semibold text-lg">
                     <span>Total:</span>
-                    <span className="gradient-primary bg-clip-text text-transparent">
+                    <span className="text-white">
                       R$ {finalTotal.toFixed(2)}
                     </span>
                   </div>
