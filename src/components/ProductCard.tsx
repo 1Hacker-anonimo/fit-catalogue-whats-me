@@ -38,17 +38,8 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
           {product.name}
         </h3>
         
-        <p className="text-muted-foreground text-sm mb-3 whitespace-pre-line">
-          {product.description.split("\n").map((line, i) => (
-    <span key={i}>
-      {line}
-      <br />
-    </span>
-) 
-(
-    <br key={i} />
-    )
-  )}
+      <p className="text-muted-foreground text-sm mb-3 whitespace-pre-line">
+  {product.description}
 </p>
         
         <div className="mb-3">
