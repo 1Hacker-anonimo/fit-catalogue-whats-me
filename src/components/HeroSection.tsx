@@ -20,7 +20,7 @@ const HeroSection = () => {
             <Sparkles className="h-6 w-6 text-primary animate-pulse" />
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-primary bg-clip-text text-transparent leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
             Moda Fitness
             <br />
             <span className="text-4xl md:text-6xl">que Inspira</span>

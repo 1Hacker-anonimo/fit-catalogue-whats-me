@@ -55,7 +55,7 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
+          <DialogTitle className="text-2xl font-bold text-white">
             {product.name}
           </DialogTitle>
         </DialogHeader>

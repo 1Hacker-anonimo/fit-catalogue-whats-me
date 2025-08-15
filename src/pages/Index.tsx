@@ -71,7 +71,7 @@ const Index = () => {
       <section id="produtos" className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-primary bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
               Nossa Coleção
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -94,7 +94,7 @@ const Index = () => {
       {/* Newsletter Section */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-4 gradient-primary bg-clip-text text-transparent">
+          <h3 className="text-3xl font-bold mb-4 text-white">
             Fique por dentro das novidades
           </h3>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
@@ -120,7 +120,7 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <div className="gradient-primary w-8 h-8 rounded-full"></div>
-                <h3 className="text-xl font-bold gradient-primary bg-clip-text text-transparent">
+                <h3 className="text-xl font-bold text-white">
                   FitGirl
                 </h3>
               </div>

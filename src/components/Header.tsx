@@ -14,7 +14,7 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center space-x-2">
           <div className="gradient-primary w-8 h-8 rounded-full animate-pulse-slow"></div>
-          <h1 className="text-xl font-bold gradient-primary bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold text-white">
             FitGirl
           </h1>
         </div>
