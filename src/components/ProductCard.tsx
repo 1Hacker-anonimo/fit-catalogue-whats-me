@@ -38,7 +38,7 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
           {product.name}
         </h3>
         
-        <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+        <p className="text-muted-foreground text-sm mb-3 whitespace-pre-line">
           {product.description}
         </p>
         
