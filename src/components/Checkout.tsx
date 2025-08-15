@@ -48,7 +48,7 @@ const Checkout = ({ isOpen, onClose, items }: CheckoutProps) => {
       `• ${item.product.name} - ${item.selectedColor.name} - ${item.selectedSize.name} (${item.quantity}x) - R$ ${(item.product.price * item.quantity).toFixed(2)}`
     ).join('\n');
 
-    return `🛍️ *NOVO PEDIDO - FitGirl* 🛍️
+    return `🛍️ *NOVO PEDIDO - ATHENEA.FIT* 🛍️
 
 📋 *PRODUTOS:*
 ${itemsList}
