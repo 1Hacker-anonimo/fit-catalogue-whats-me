@@ -14,7 +14,7 @@ export const products: Product[] = [
     name: "Macaquinho Fitness Feminino Poliamida sem Bolsos – Alta Compressão",
     description: `Para quem busca estilo e conforto em um só look, o Macaquinho combina design moderno e funcionalidade. Criamos essa peça com modelagem ajustada e tecido tecnológico para oferecer máximo desempenho e versatilidade. Seu detalhe trançado nas costas adiciona um toque sofisticado e elegante, perfeito para compor produções cheias de personalidade.
 
-
+\n
 ---
 
 ESPECIFICAÇÕES
