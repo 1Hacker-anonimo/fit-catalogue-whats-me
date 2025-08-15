@@ -63,7 +63,7 @@ const HeroSection = () => {
                 ↺
               </div>
               <h3 className="font-semibold mb-2">Troca Grátis</h3>
-              <p className="text-muted-foreground text-sm">30 dias para trocar</p>
+              <p className="text-muted-foreground text-sm">2 horas para trocar</p>
             </div>
             
             <div className="text-center">
