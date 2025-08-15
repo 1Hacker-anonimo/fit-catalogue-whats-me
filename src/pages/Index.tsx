@@ -155,15 +155,15 @@ const Index = () => {
               <h4 className="font-semibold mb-4">Contato</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>📧 contato@fitgirl.com.br</li>
-                <li>📱 (11) 99999-9999</li>
-                <li>📍 São Paulo, SP</li>
+                <li>📱 (85) 9828-4434</li>
+                <li>📍 Pentecoste, CE</li>
                 <li>🕒 Seg à Sex: 9h às 18h</li>
               </ul>
             </div>
           </div>
           
           <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 FitGirl. Todos os direitos reservados.</p>
+            <p>&copy; 2024 ATHENEA.FIT. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
