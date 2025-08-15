@@ -12,7 +12,28 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Macaquinho Fitness Feminino Poliamida sem Bolsos – Alta Compressão",
-    description: 'MACACÃO \n CONJUNTO DE SHORT',
+    description: 'Para quem busca estilo e conforto em um só look, o Macaquinho combina design moderno e funcionalidade. Criamos essa peça com modelagem ajustada e tecido tecnológico para oferecer máximo desempenho e versatilidade. Seu detalhe trançado nas costas adiciona um toque sofisticado e elegante, perfeito para compor produções cheias de personalidade.
+
+
+---
+
+ESPECIFICAÇÕES
+✔️ Versátil: Idealpara atividades físicas.
+✔️ Tecido Tecnológico: Alta elasticidade e conforto para um caimento perfeito.
+✔️ Zero Transparência: Segurança total durante os treinos na academia.
+✔️ Respirável e Leve: Mantém a pele fresca, mesmo em treinos intensos.
+
+📌 Composição: 90% Poliamida, 10% Elastano
+📌 Nível de Compressão: Médio – modela sem apertar
+📌 Garantia: Contra defeitos de fabricação
+
+
+---
+
+CUIDADOS COM A PEÇA
+🧼 Lavar à mão com sabão neutro
+🌞 Secar à sombra para preservar a cor e a elasticidade
+🚫 Não utilizar amaciante ou ferro de passar',
     price: 89.90,
     images: [ product8, product7 ],
     colors: [
