@@ -27,7 +27,7 @@ ESPECIFICAÇÕES
 📌 Nível de Compressão: Médio – modela sem apertar
 📌 Garantia: Contra defeitos de fabricação
 
-
+\n
 ---
 
 CUIDADOS COM A PEÇA
