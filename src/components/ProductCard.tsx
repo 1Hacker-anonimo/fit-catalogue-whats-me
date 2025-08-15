@@ -44,7 +44,10 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
       {line}
       <br />
     </span>
-  ))}
+):(
+    <br key={i} />
+    )
+  )}
 </p>
         
         <div className="mb-3">
