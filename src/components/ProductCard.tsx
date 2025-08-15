@@ -24,7 +24,7 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
         <img 
           src={product.images[0]} 
           alt={product.name}
-          className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105 p-4"
+          className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105"
           onClick={() => onProductClick(product)}
         />
         

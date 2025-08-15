@@ -119,9 +119,13 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
                 R$ {product.price.toFixed(2)}
               </div>
               
-              <p className="text-muted-foreground mb-4">
-                {product.description}
-              </p>
+              <div className="text-muted-foreground mb-4 leading-relaxed space-y-2">
+                {product.description.split('\n').map((line, index) => (
+                  <p key={index} className="mb-2">
+                    {line}
+                  </p>
+                ))}
+              </div>
             </div>
 
             {/* Cores */}

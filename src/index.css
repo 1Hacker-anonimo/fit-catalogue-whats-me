@@ -100,6 +100,44 @@ All colors MUST be HSL.
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 0 0% 100%;
   }
+
+  .pink {
+    --background: 350 100% 95%;
+    --foreground: 0 0% 0%;
+
+    --card: 350 100% 95%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 350 100% 95%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 350 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 350 50% 90%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 350 30% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 350 70% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 350 30% 80%;
+    --input: 350 30% 85%;
+    --ring: 350 70% 50%;
+    --sidebar-background: 350 100% 95%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 350 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 350 50% 90%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 350 30% 80%;
+    --sidebar-ring: 350 70% 50%;
+  }
 }
 
 @layer base {
