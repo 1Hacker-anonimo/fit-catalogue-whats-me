@@ -1,6 +1,7 @@
 import { ShoppingBag, Heart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import ThemeToggle from "./ThemeToggle";
 
 interface HeaderProps {
   cartItemsCount: number;
@@ -31,6 +32,8 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
         </nav>
 
         <div className="flex items-center space-x-3">
+          <ThemeToggle />
+          
           <Button variant="ghost" size="icon" className="relative">
             <Heart className="h-5 w-5" />
           </Button>

@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
+import { useState } from "react";
 
 interface ProductCardProps {
   product: Product;
@@ -10,13 +11,20 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsFavorited(!isFavorited);
+  };
+
   return (
     <Card className="group cursor-pointer hover:shadow-medium transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden bg-white rounded-t-lg">
         <img 
           src={product.images[0]} 
           alt={product.name}
-          className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105 p-4"
           onClick={() => onProductClick(product)}
         />
         
@@ -24,8 +32,13 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
           variant="ghost" 
           size="icon" 
           className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white"
+          onClick={handleFavoriteClick}
         >
-          <Heart className="h-4 w-4" />
+          <Heart 
+            className={`h-4 w-4 transition-colors ${
+              isFavorited ? 'fill-red-500 text-red-500' : 'text-gray-600'
+            }`} 
+          />
         </Button>
 
         <Badge className="absolute top-3 left-3 gradient-primary text-white">
@@ -34,16 +47,12 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
       </div>
       
       <CardContent className="p-4" onClick={() => onProductClick(product)}>
-        <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+        <h3 className="font-semibold text-lg mb-3 group-hover:text-primary transition-colors line-clamp-2">
           {product.name}
         </h3>
         
-      <p className="text-muted-foreground text-sm mb-3 whitespace-pre-line">
-  {product.description}
-</p>
-        
         <div className="mb-3">
-          <span className="text-white font-bold text-base">
+          <span className="text-foreground font-bold text-lg">
             R$ {product.price.toFixed(2)}
           </span>
         </div>
