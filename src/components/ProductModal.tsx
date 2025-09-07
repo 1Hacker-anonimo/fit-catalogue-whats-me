@@ -162,15 +162,11 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
     variant="outline"
     disabled={!size.available}
     onClick={() => setSelectedSize(size)}
-    className={${
+    className={`${
       selectedSize?.name === size.name 
-        ? 'bg-white text-black border border-gray-300 shadow-sm' 
+        ? '!bg-white !text-black !border-gray-300 shadow-sm' 
         : ''
-    } ${
-      !size.available 
-        ? 'opacity-50 cursor-not-allowed' 
-        : ''
-    }}
+    } ${!size.available ? 'opacity-50 cursor-not-allowed' : ''}`}
   >
     {size.name}
   </Button>
