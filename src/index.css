@@ -180,7 +180,7 @@ All colors MUST be HSL.
   }
   
   .animate-bounce-slow {
-    animation: bounce 2s infinite;
+    animation: bounce 10s infinite;
   }
 }
 
