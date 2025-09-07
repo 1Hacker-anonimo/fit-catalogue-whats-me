@@ -184,7 +184,9 @@ All colors MUST be HSL.
   }
 }
 
+/* MOVIMENTO DA BOLINHA NA TELA HOME */
+
 /* @keyframes float { */
-  0%, 100% { transform: translateY(0px); }
-  100% { transform: translateY(-0px); }
-}
+  /* 0%, 100% { transform: translateY(0px); } */
+  /* 100% { transform: translateY(-0px); } */
+/* } */
