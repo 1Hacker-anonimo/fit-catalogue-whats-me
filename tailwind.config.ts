@@ -95,8 +95,8 @@ export default {
 					'100%': { transform: 'translateY(-0px)' }
 				},
 				pulse: {
-					'0%, 100%': { opacity: '1' },
-					'100%': { opacity: '.8' }
+					'0%, 00%': { opacity: '1' },
+					'00%': { opacity: '.8' }
 				}
 			},
 			animation: {
