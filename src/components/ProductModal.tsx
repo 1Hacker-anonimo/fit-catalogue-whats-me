@@ -157,24 +157,24 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
               <h4 className="font-semibold mb-3">Tamanhos:</h4>
               <div className="flex flex-wrap gap-2">
                 {product.sizes.map((size) => (
-                  <Button
-                    key={size.name}
-                    variant={selectedSize?.name === size.name ? "default" : "outline"}
-                    disabled={!size.available}
-                    onClick={() => setSelectedSize(size)}
-                    className={`${
-                      selectedSize?.name === size.name 
-                        ? 'gradient-primary text-white' 
-                        : ''
-                    } ${
-                      !size.available 
-                        ? 'opacity-50 cursor-not-allowed' 
-                        : ''
-                    }`}
-                  >
-                    {size.name}
-                  </Button>
-                ))}
+  <Button
+    key={size.name}
+    variant="outline"
+    disabled={!size.available}
+    onClick={() => setSelectedSize(size)}
+    className={${
+      selectedSize?.name === size.name 
+        ? 'bg-white text-black border border-gray-300 shadow-sm' 
+        : ''
+    } ${
+      !size.available 
+        ? 'opacity-50 cursor-not-allowed' 
+        : ''
+    }}
+  >
+    {size.name}
+  </Button>
+))}
               </div>
             </div>
 
