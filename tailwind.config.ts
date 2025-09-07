@@ -96,7 +96,7 @@ export default {
 				},
 				pulse: {
 					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '.8' }
+					'100%': { opacity: '.8' }
 				}
 			},
 			animation: {
