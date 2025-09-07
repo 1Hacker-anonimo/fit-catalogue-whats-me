@@ -159,7 +159,7 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
                 {product.sizes.map((size) => (
                   <Button
                     key={size.name}
-                    variant="outline"
+                    variant={selectedSize?.name === size.name ? "outline"}
                     disabled={!size.available}
                     onClick={() => setSelectedSize(size)}
                     className={`${
