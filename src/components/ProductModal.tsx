@@ -222,45 +222,47 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
 
             {/* Cores */}
             <div>
-              <h4 className="font-semibold mb-3">Selecione as cores desejadas:</h4>
-              <div className="flex flex-wrap gap-3">
+              <h4 className="font-semibold mb-3 text-foreground">Selecione as cores desejadas:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {product.colors.map((color) => {
                   const isSelected = selectedColors.some(c => c.name === color.name);
                   return (
                     <button
                       key={color.name}
                       onClick={() => toggleColorSelection(color)}
-                      className={`flex items-center space-x-2 p-3 rounded-lg border-2 transition-all ${
+                      className={`flex items-center justify-start space-x-3 p-3 rounded-xl border-2 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[60px] ${
                         isSelected 
-                          ? 'border-primary shadow-medium bg-primary/10' 
-                          : 'border-border hover:border-primary/50'
+                          ? 'border-primary shadow-medium bg-primary/10 ring-2 ring-primary/20' 
+                          : 'border-border hover:border-primary/50 hover:bg-muted/30'
                       }`}
                     >
                       <div 
-                        className="w-6 h-6 rounded-full border border-white shadow-sm relative"
+                        className="w-8 h-8 rounded-full border-2 border-white shadow-md relative flex-shrink-0"
                         style={{ backgroundColor: color.value }}
                       >
                         {isSelected && (
-                          <Check className="h-4 w-4 text-white absolute inset-0 m-auto" />
+                          <Check className="h-5 w-5 text-white absolute inset-0 m-auto drop-shadow-sm" />
                         )}
                       </div>
-                      <span className="text-sm font-medium">{color.name}</span>
+                      <span className="text-sm font-medium text-foreground">{color.name}</span>
                     </button>
                   );
                 })}
               </div>
               {selectedColors.length > 0 && (
-                <p className="text-sm text-muted-foreground mt-2">
-                  {selectedColors.length} cor(es) selecionada(s)
-                </p>
+                <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <p className="text-sm text-primary font-medium">
+                    ✓ {selectedColors.length} cor(es) selecionada(s): {selectedColors.map(c => c.name).join(', ')}
+                  </p>
+                </div>
               )}
             </div>
 
             {/* Tamanhos */}
             <div>
-              <h4 className="font-semibold mb-3">Selecione os tamanhos:</h4>
-              <div className="space-y-3">
-                <div className="flex flex-wrap gap-2">
+              <h4 className="font-semibold mb-3 text-foreground">Selecione os tamanhos:</h4>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                   {product.sizes.map((size) => {
                     const isSelected = selectedSizes.some(s => s.name === size.name);
                     return (
@@ -269,13 +271,16 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
                         variant="outline"
                         disabled={!size.available}
                         onClick={() => toggleSizeSelection(size)}
-                        className={`${
+                        className={`relative h-12 text-base font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
                           isSelected 
-                            ? '!bg-primary !text-primary-foreground !border-primary shadow-sm' 
-                            : ''
+                            ? '!bg-primary !text-primary-foreground !border-primary shadow-medium ring-2 ring-primary/20' 
+                            : 'hover:border-primary/50 hover:bg-primary/5'
                         } ${!size.available ? 'opacity-50 cursor-not-allowed' : ''}`}
                       >
                         {size.name}
+                        {isSelected && (
+                          <Check className="h-4 w-4 absolute top-1 right-1" />
+                        )}
                       </Button>
                     );
                   })}
@@ -283,42 +288,94 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
                 
                 {/* Associações Tamanho-Cor */}
                 {selectedSizes.length > 0 && (
-                  <div className="space-y-3 mt-4 p-4 rounded-lg bg-muted/30">
-                    <h5 className="font-medium text-sm">Escolha a cor para cada tamanho:</h5>
-                    {selectedSizes.map((size) => (
-                      <div key={size.name} className="flex items-center gap-3">
-                        <span className="min-w-[3rem] text-sm font-medium">
-                          Tamanho {size.name}:
-                        </span>
-                        {selectedColors.length > 0 ? (
-                          <Select
-                            value={sizeColorAssociations[size.name]?.name || ""}
-                            onValueChange={(colorName) => handleSizeColorAssociation(size.name, colorName)}
-                          >
-                            <SelectTrigger className="w-48">
-                              <SelectValue placeholder="Escolha uma cor" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {selectedColors.map((color) => (
-                                <SelectItem key={color.name} value={color.name}>
-                                  <div className="flex items-center gap-2">
-                                    <div 
-                                      className="w-4 h-4 rounded-full border border-gray-300"
-                                      style={{ backgroundColor: color.value }}
-                                    />
-                                    {color.name}
-                                  </div>
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        ) : (
-                          <span className="text-sm text-muted-foreground italic">
-                            Selecione cores primeiro
-                          </span>
-                        )}
+                  <div className="space-y-3 mt-6 p-4 rounded-xl bg-muted/30 border border-border">
+                    <h5 className="font-semibold text-foreground flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      Escolha a cor para cada tamanho:
+                    </h5>
+                    <div className="space-y-3">
+                      {selectedSizes.map((size) => (
+                        <div key={size.name} className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 rounded-lg bg-background border border-border">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                              <span className="text-sm font-bold text-primary">
+                                {size.name}
+                              </span>
+                            </div>
+                            <span className="text-sm font-medium text-foreground">
+                              Tamanho {size.name}
+                            </span>
+                            <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          </div>
+                          
+                          <div className="flex-1 min-w-0">
+                            {selectedColors.length > 0 ? (
+                              <Select
+                                value={sizeColorAssociations[size.name]?.name || ""}
+                                onValueChange={(colorName) => handleSizeColorAssociation(size.name, colorName)}
+                              >
+                                <SelectTrigger className="w-full h-10 border-2 hover:border-primary/50 focus:border-primary transition-colors">
+                                  <SelectValue placeholder="👆 Clique para escolher uma cor" />
+                                </SelectTrigger>
+                                <SelectContent className="z-50 max-h-60 overflow-y-auto">
+                                  {selectedColors.map((color) => (
+                                    <SelectItem 
+                                      key={color.name} 
+                                      value={color.name}
+                                      className="cursor-pointer hover:bg-primary/5 focus:bg-primary/10"
+                                    >
+                                      <div className="flex items-center gap-3 py-1">
+                                        <div 
+                                          className="w-6 h-6 rounded-full border-2 border-white shadow-sm flex-shrink-0"
+                                          style={{ backgroundColor: color.value }}
+                                        />
+                                        <span className="font-medium">{color.name}</span>
+                                        {sizeColorAssociations[size.name]?.name === color.name && (
+                                          <Check className="h-4 w-4 text-primary ml-auto" />
+                                        )}
+                                      </div>
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            ) : (
+                              <div className="flex items-center justify-center h-10 px-3 rounded-md border-2 border-dashed border-muted-foreground/30 bg-muted/20">
+                                <span className="text-sm text-muted-foreground italic">
+                                  ⚠️ Selecione cores primeiro
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Status das associações */}
+                    <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                      <h6 className="text-sm font-semibold text-primary mb-2">Status das seleções:</h6>
+                      <div className="space-y-1">
+                        {selectedSizes.map((size) => {
+                          const associatedColor = sizeColorAssociations[size.name];
+                          return (
+                            <div key={size.name} className="flex items-center justify-between text-sm">
+                              <span className="font-medium">Tamanho {size.name}:</span>
+                              {associatedColor ? (
+                                <div className="flex items-center gap-2">
+                                  <div 
+                                    className="w-4 h-4 rounded-full border border-white shadow-sm"
+                                    style={{ backgroundColor: associatedColor.value }}
+                                  />
+                                  <span className="text-primary font-medium">{associatedColor.name}</span>
+                                  <Check className="h-3 w-3 text-green-500" />
+                                </div>
+                              ) : (
+                                <span className="text-muted-foreground italic">Não selecionada</span>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 )}
               </div>
