@@ -57,7 +57,7 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
           </span>
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
             <ShoppingBag className="h-4 w-4 mr-2" />
             Adicionar ao Carrinho
