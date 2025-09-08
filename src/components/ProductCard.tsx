@@ -60,49 +60,15 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
         <div className="flex flex-col gap-2">
 
           
-  <Button
-    size="sm"
-    className="flex-1 bg-white text-black hover:bg-gray-200 font-medium flex items-center gap-2"
-    onClick={() => {
-      const newItem: CartItem = {
-        product: product, // produto atual
-        quantity: 1,
-        selectedColor: product.colors[0],
-        selectedSize: product.sizes[0],
-      };
-
-      // Verifica se já existe no carrinho
-      const index = cartItems.findIndex(
-        (item) =>
-          item.product.id === newItem.product.id &&
-          item.selectedColor.name === newItem.selectedColor.name &&
-          item.selectedSize.name === newItem.selectedSize.name
-      );
-
-      if (index >= 0) {
-        const updated = [...cartItems];
-        updated[index].quantity += 1;
-        setCartItems(updated);
-      } else {
-        setCartItems([...cartItems, newItem]);
-      }
-
-      // Redireciona visualmente para o carrinho
-      setCartOpen(true);
-    }}
-  >
-    <ShoppingBag className="h-4 w-4" />
-    Adicionar ao Carrinho
-  </Button>
-
-  <Button
-    size="sm"
-    className="flex-1 bg-white text-black hover:bg-gray-200 font-medium"
-    // Continua do jeito que estava
-  >
-    Comprar Agora
-  </Button>
-</div>
+        <div className="flex flex-col gap-2">
+          <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
+            <ShoppingBag className="h-4 w-4 mr-2" />
+            Adicionar ao Carrinho
+          </Button>
+          <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
+            Comprar Agora
+          </Button>
+        </div>
         
         <div className="flex mt-3 space-x-1">
           {product.colors.slice(0, 3).map((color, index) => (
