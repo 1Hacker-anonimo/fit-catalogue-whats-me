@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Product, Color, Size, CartItem } from "@/types/product";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Minus, Plus, ShoppingBag, Heart, Star } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Minus, Plus, ShoppingBag, Heart, Star, ChevronDown, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface ProductModalProps {
@@ -16,28 +17,98 @@ interface ProductModalProps {
 }
 
 const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: ProductModalProps) => {
-  const [selectedColor, setSelectedColor] = useState<Color | null>(null);
-  const [selectedSize, setSelectedSize] = useState<Size | null>(null);
+  const [selectedColors, setSelectedColors] = useState<Color[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<Size[]>([]);
+  const [sizeColorAssociations, setSizeColorAssociations] = useState<Record<string, Color>>({});
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { toast } = useToast();
 
+  // Reset states when modal opens/closes
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedColors([]);
+      setSelectedSizes([]);
+      setSizeColorAssociations({});
+      setQuantity(1);
+      setCurrentImageIndex(0);
+    }
+  }, [isOpen]);
+
   if (!product) return null;
 
+  const toggleColorSelection = (color: Color) => {
+    setSelectedColors(prev => {
+      const isSelected = prev.some(c => c.name === color.name);
+      if (isSelected) {
+        // Remove color and clear any size associations with this color
+        setSizeColorAssociations(prevAssoc => {
+          const newAssoc = { ...prevAssoc };
+          Object.keys(newAssoc).forEach(sizeName => {
+            if (newAssoc[sizeName].name === color.name) {
+              delete newAssoc[sizeName];
+            }
+          });
+          return newAssoc;
+        });
+        return prev.filter(c => c.name !== color.name);
+      } else {
+        return [...prev, color];
+      }
+    });
+  };
+
+  const toggleSizeSelection = (size: Size) => {
+    setSelectedSizes(prev => {
+      const isSelected = prev.some(s => s.name === size.name);
+      if (isSelected) {
+        // Remove size and its color association
+        setSizeColorAssociations(prevAssoc => {
+          const newAssoc = { ...prevAssoc };
+          delete newAssoc[size.name];
+          return newAssoc;
+        });
+        return prev.filter(s => s.name !== size.name);
+      } else {
+        return [...prev, size];
+      }
+    });
+  };
+
+  const handleSizeColorAssociation = (sizeName: string, colorName: string) => {
+    const color = selectedColors.find(c => c.name === colorName);
+    if (color) {
+      setSizeColorAssociations(prev => ({
+        ...prev,
+        [sizeName]: color
+      }));
+    }
+  };
+
+  const canAddToCart = () => {
+    return selectedSizes.length > 0 && 
+           selectedSizes.every(size => sizeColorAssociations[size.name]);
+  };
+
   const handleAddToCart = () => {
-    if (!selectedColor || !selectedSize) {
+    if (!canAddToCart()) {
       toast({
         title: "Seleção incompleta",
-        description: "Por favor, selecione cor e tamanho",
+        description: "Por favor, selecione tamanhos e cores para cada tamanho",
         variant: "destructive"
       });
       return;
     }
 
+    // For now, we'll add the first size-color combination
+    // In a more complex version, we could add multiple items
+    const firstSize = selectedSizes[0];
+    const associatedColor = sizeColorAssociations[firstSize.name];
+
     onAddToCart({
       product,
-      selectedColor,
-      selectedSize,
+      selectedColor: associatedColor,
+      selectedSize: firstSize,
       quantity
     });
 
@@ -48,19 +119,23 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
   };
 
   const handleBuyNow = () => {
-    if (!selectedColor || !selectedSize) {
+    if (!canAddToCart()) {
       toast({
         title: "Seleção incompleta",
-        description: "Por favor, selecione cor e tamanho",
+        description: "Por favor, selecione tamanhos e cores para cada tamanho",
         variant: "destructive"
       });
       return;
     }
 
+    // For now, we'll use the first size-color combination
+    const firstSize = selectedSizes[0];
+    const associatedColor = sizeColorAssociations[firstSize.name];
+
     const cartItem = {
       product,
-      selectedColor,
-      selectedSize,
+      selectedColor: associatedColor,
+      selectedSize: firstSize,
       quantity
     };
 
@@ -147,47 +222,105 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
 
             {/* Cores */}
             <div>
-              <h4 className="font-semibold mb-3">Cores disponíveis:</h4>
+              <h4 className="font-semibold mb-3">Selecione as cores desejadas:</h4>
               <div className="flex flex-wrap gap-3">
-                {product.colors.map((color) => (
-                  <button
-                    key={color.name}
-                    onClick={() => setSelectedColor(color)}
-                    className={`flex items-center space-x-2 p-3 rounded-lg border-2 transition-all ${
-                      selectedColor?.name === color.name 
-                        ? 'border-primary shadow-medium bg-primary/5' 
-                        : 'border-border hover:border-primary/50'
-                    }`}
-                  >
-                    <div 
-                      className="w-6 h-6 rounded-full border border-white shadow-sm"
-                      style={{ backgroundColor: color.value }}
-                    />
-                    <span className="text-sm font-medium">{color.name}</span>
-                  </button>
-                ))}
+                {product.colors.map((color) => {
+                  const isSelected = selectedColors.some(c => c.name === color.name);
+                  return (
+                    <button
+                      key={color.name}
+                      onClick={() => toggleColorSelection(color)}
+                      className={`flex items-center space-x-2 p-3 rounded-lg border-2 transition-all ${
+                        isSelected 
+                          ? 'border-primary shadow-medium bg-primary/10' 
+                          : 'border-border hover:border-primary/50'
+                      }`}
+                    >
+                      <div 
+                        className="w-6 h-6 rounded-full border border-white shadow-sm relative"
+                        style={{ backgroundColor: color.value }}
+                      >
+                        {isSelected && (
+                          <Check className="h-4 w-4 text-white absolute inset-0 m-auto" />
+                        )}
+                      </div>
+                      <span className="text-sm font-medium">{color.name}</span>
+                    </button>
+                  );
+                })}
               </div>
+              {selectedColors.length > 0 && (
+                <p className="text-sm text-muted-foreground mt-2">
+                  {selectedColors.length} cor(es) selecionada(s)
+                </p>
+              )}
             </div>
 
             {/* Tamanhos */}
             <div>
-              <h4 className="font-semibold mb-3">Tamanhos:</h4>
-              <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
-  <Button
-    key={size.name}
-    variant="outline"
-    disabled={!size.available}
-    onClick={() => setSelectedSize(size)}
-    className={`${
-      selectedSize?.name === size.name 
-        ? '!bg-white !text-black !border-gray-300 shadow-sm' 
-        : ''
-    } ${!size.available ? 'opacity-50 cursor-not-allowed' : ''}`}
-  >
-    {size.name}
-  </Button>
-))}
+              <h4 className="font-semibold mb-3">Selecione os tamanhos:</h4>
+              <div className="space-y-3">
+                <div className="flex flex-wrap gap-2">
+                  {product.sizes.map((size) => {
+                    const isSelected = selectedSizes.some(s => s.name === size.name);
+                    return (
+                      <Button
+                        key={size.name}
+                        variant="outline"
+                        disabled={!size.available}
+                        onClick={() => toggleSizeSelection(size)}
+                        className={`${
+                          isSelected 
+                            ? '!bg-primary !text-primary-foreground !border-primary shadow-sm' 
+                            : ''
+                        } ${!size.available ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        {size.name}
+                      </Button>
+                    );
+                  })}
+                </div>
+                
+                {/* Associações Tamanho-Cor */}
+                {selectedSizes.length > 0 && (
+                  <div className="space-y-3 mt-4 p-4 rounded-lg bg-muted/30">
+                    <h5 className="font-medium text-sm">Escolha a cor para cada tamanho:</h5>
+                    {selectedSizes.map((size) => (
+                      <div key={size.name} className="flex items-center gap-3">
+                        <span className="min-w-[3rem] text-sm font-medium">
+                          Tamanho {size.name}:
+                        </span>
+                        {selectedColors.length > 0 ? (
+                          <Select
+                            value={sizeColorAssociations[size.name]?.name || ""}
+                            onValueChange={(colorName) => handleSizeColorAssociation(size.name, colorName)}
+                          >
+                            <SelectTrigger className="w-48">
+                              <SelectValue placeholder="Escolha uma cor" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {selectedColors.map((color) => (
+                                <SelectItem key={color.name} value={color.name}>
+                                  <div className="flex items-center gap-2">
+                                    <div 
+                                      className="w-4 h-4 rounded-full border border-gray-300"
+                                      style={{ backgroundColor: color.value }}
+                                    />
+                                    {color.name}
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <span className="text-sm text-muted-foreground italic">
+                            Selecione cores primeiro
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -218,7 +351,7 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
               <Button 
                 className="w-full gradient-primary text-white shadow-medium hover:shadow-strong transition-all"
                 onClick={handleBuyNow}
-                disabled={!selectedColor || !selectedSize}
+                disabled={!canAddToCart()}
               >
                 <ShoppingBag className="h-5 w-5 mr-2" />
                 Comprar Agora
@@ -228,7 +361,7 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: Produ
                 variant="outline" 
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={!selectedColor || !selectedSize}
+                disabled={!canAddToCart()}
               >
                 Adicionar ao Carrinho
               </Button>
