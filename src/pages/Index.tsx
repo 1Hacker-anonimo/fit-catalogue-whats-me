@@ -181,6 +181,7 @@ const Index = () => {
         isOpen={isProductModalOpen}
         onClose={() => setIsProductModalOpen(false)}
         onAddToCart={handleAddToCart}
+        onBuyNow={handleBuyNow}
       />
 
       <Cart

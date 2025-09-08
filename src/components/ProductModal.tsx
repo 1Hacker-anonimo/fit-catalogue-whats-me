@@ -12,9 +12,10 @@ interface ProductModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAddToCart: (item: CartItem) => void;
+  onBuyNow: (item: CartItem) => void;
 }
 
-const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalProps) => {
+const ProductModal = ({ product, isOpen, onClose, onAddToCart, onBuyNow }: ProductModalProps) => {
   const [selectedColor, setSelectedColor] = useState<Color | null>(null);
   const [selectedSize, setSelectedSize] = useState<Size | null>(null);
   const [quantity, setQuantity] = useState(1);
@@ -47,7 +48,23 @@ const ProductModal = ({ product, isOpen, onClose, onAddToCart }: ProductModalPro
   };
 
   const handleBuyNow = () => {
-    handleAddToCart();
+    if (!selectedColor || !selectedSize) {
+      toast({
+        title: "Seleção incompleta",
+        description: "Por favor, selecione cor e tamanho",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const cartItem = {
+      product,
+      selectedColor,
+      selectedSize,
+      quantity
+    };
+
+    onBuyNow(cartItem);
     onClose();
   };
 
