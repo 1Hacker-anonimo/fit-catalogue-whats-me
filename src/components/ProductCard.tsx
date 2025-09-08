@@ -58,7 +58,7 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
         </div>
         
         <div className="flex gap-2">
-          <Button size="sm" className="flex-1 bg-white text-white hover:bg-white-200 font-medium">
+          <Button size="sm" className="flex-1 bg-white text-white hover:bg-white font-medium">
             <ShoppingBag className="h-4 w-4 mr-2" />
             Adicionar ao Carrinho
           </Button>
