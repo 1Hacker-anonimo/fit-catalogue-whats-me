@@ -1,4 +1,4 @@
-import { Product } from "@/types/product";
+import { Product, CartItem } from "@/types/product";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,9 +8,11 @@ import { useState } from "react";
 interface ProductCardProps {
   product: Product;
   onProductClick: (product: Product) => void;
+  onAddToCart: (item: CartItem) => void;
+  onBuyNow: (item: CartItem) => void;
 }
 
-const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
+const ProductCard = ({ product, onProductClick, onAddToCart, onBuyNow }: ProductCardProps) => {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
@@ -58,14 +60,37 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
         </div>
         
         <div className="flex flex-col gap-2">
-
-          
-        <div className="flex flex-col gap-2">
-          <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
+          <Button 
+            size="sm" 
+            className="flex-1 bg-white text-black hover:bg-gray-200 font-medium"
+            onClick={(e) => {
+              e.stopPropagation();
+              const cartItem: CartItem = {
+                product,
+                selectedColor: product.colors[0],
+                selectedSize: product.sizes.find(size => size.available) || product.sizes[0],
+                quantity: 1
+              };
+              onAddToCart(cartItem);
+            }}
+          >
             <ShoppingBag className="h-4 w-4 mr-2" />
             Adicionar ao Carrinho
           </Button>
-          <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
+          <Button 
+            size="sm" 
+            className="flex-1 bg-white text-black hover:bg-gray-200 font-medium"
+            onClick={(e) => {
+              e.stopPropagation();
+              const cartItem: CartItem = {
+                product,
+                selectedColor: product.colors[0],
+                selectedSize: product.sizes.find(size => size.available) || product.sizes[0],
+                quantity: 1
+              };
+              onBuyNow(cartItem);
+            }}
+          >
             Comprar Agora
           </Button>
         </div>

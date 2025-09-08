@@ -56,6 +56,11 @@ const Index = () => {
     setIsCheckoutOpen(true);
   };
 
+  const handleBuyNow = (item: CartItem) => {
+    handleAddToCart(item);
+    setIsCheckoutOpen(true);
+  };
+
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -85,6 +90,8 @@ const Index = () => {
                 key={product.id}
                 product={product}
                 onProductClick={handleProductClick}
+                onAddToCart={handleAddToCart}
+                onBuyNow={handleBuyNow}
               />
             ))}
           </div>
