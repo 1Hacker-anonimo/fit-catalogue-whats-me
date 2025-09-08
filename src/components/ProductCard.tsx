@@ -59,6 +59,7 @@ const ProductCard = ({ product, onProductClick }: ProductCardProps) => {
         
         <div className="flex flex-col gap-2">
           <Button size="sm" className="flex-1 bg-white text-black hover:bg-gray-200 font-medium">
+            onClick={handleAddToCart
             <ShoppingBag className="h-4 w-4 mr-2" />
             Adicionar ao Carrinho
           </Button>
